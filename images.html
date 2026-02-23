@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EasyTalk - Картинки</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+    <h1>Картинки → Говор</h1>
+	<div class="nav">
+        <a href="index.html" class="btn">Начало</a>
+        <a href="text.html" class="btn">Текст</a>
+		<a href="alphabet.html" class="btn">Азбука</a>
+		<a href="about.html" class="btn">За проекта</a>
+    </div>
+    <p>Натисни картинка, за да бъде произнесена</p>
+
+    <div class="grid">
+
+        <div class="image-card">
+            <img src="images/bed.jpg" alt="Спи ми се">
+            <span>Спи ми се</span>
+        </div>
+
+        <div class="image-card">
+            <img src="images/water.jpg" alt="Пие ми се вода">
+            <span>Пие ми се вода</span>
+        </div>
+
+        <div class="image-card">
+            <img src="images/food.jpg" alt="Искам да ям">
+            <span>Искам да ям</span>
+        </div>
+
+        <div class="image-card">
+            <img src="images/hot.jpg" alt="Топло ми е">
+            <span>Топло ми е</span>
+        </div>
+		
+		<div class="image-card">
+            <img src="images/cold.jpg" alt="Студено ми е">
+            <span>Студено ми е</span>
+        </div>
+		
+		<div class="image-card">
+            <img src="images/happy.jpg" alt="Щастлив съм">
+            <span>Щастлив съм</span>
+        </div>
+		
+		<div class="image-card">
+            <img src="images/home.jpg" alt="Искам вкъщи">
+            <span>Искам вкъщи</span>
+        </div>
+		
+		<div class="image-card">
+            <img src="images/homework.jpg" alt="Пиша домашни">
+            <span>Пиша домашни</span>
+        </div>
+		
+		<div class="image-card">
+            <img src="images/tired.jpg" alt="Изморен съм">
+            <span>Изморен съм</span>
+        </div>
+		
+		<div class="image-card">
+            <img src="images/sad.jpg" alt="Тъжен съм">
+            <span>Тъжен съм</span>
+        </div>
+		
+		<div class="image-card">
+            <img src="images/ill.jpg" alt="Болен съм">
+            <span>Болен съм</span>
+        </div>
+    </div>
+
+</div>
+
+<audio id="audio"></audio>
+
+<script>
+const cards = document.querySelectorAll('.image-card');
+const audio = document.getElementById('audio');
+
+cards.forEach(card => {
+    card.addEventListener('click', () => {
+        const text = card.querySelector('span').innerText;
+
+        const url =
+          "https://translate.google.com/translate_tts?ie=UTF-8&tl=bg&client=tw-ob&q=" +
+          encodeURIComponent(text);
+
+        audio.src = url;
+        audio.play();
+    });
+});
+</script>
+
+</body>
+</html>
