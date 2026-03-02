@@ -1,167 +1,122 @@
 <!DOCTYPE html>
 <html lang="bg">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EasyTalk - Азбука</title>
-    <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EasyTalk - Азбука</title>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
 
 <div class="container">
     <h1>Азбука</h1>
-	<div class="nav">
-		<a href="index.html" class="btn">Начало</a>
-        <a href="text.html" class="btn">Текст</a>
-		<a href="images.html" class="btn">Картинки</a>
-		<a href="about.html" class="btn">За проекта</a>
+
+    <div class="controls">
+        <button onclick="speakAlphabet()">🔊 Произнеси цялата азбука</button>
+        <button onclick="stopSpeaking()">⛔ Стоп</button>
+        <button onclick="toggleSlowMode()">👶 Детски режим</button>
+        <button onclick="toggleDarkMode()">🌙 Тъмен режим</button>
     </div>
+
     <p>Натисни буква, за да бъде произнесена</p>
 
-    <div class="grid">
-
-        <div class="image-card">
-            <img src="alphabet/1_a.png" alt="а">
-			<span>а</span>
-        </div>
-		<div class="image-card">
-            <img src="alphabet/2_b.png" alt="б">
-			<span>б</span>
-        </div>
-		<div class="image-card">
-            <img src="alphabet/3_v.png" alt="в">
-			<span>в</span>
-        </div>
-		<div class="image-card">
-            <img src="alphabet/4_g.png" alt="г">
-			<span>г</span>
-        </div>
-		<div class="image-card">
-            <img src="alphabet/5_d.png" alt="д">
-			<span>д</span>
-        </div>
-		<div class="image-card">
-            <img src="alphabet/6_e.png" alt="е">
-			<span>е</span>
-        </div>
-		<div class="image-card">
-            <img src="alphabet/7_j.png" alt="ж">
-			<span>ж</span>
-        </div>
-		<div class="image-card">
-            <img src="alphabet/8_z.png" alt="з">
-			<span>з</span>
-        </div>
-		<div class="image-card">
-            <img src="alphabet/9_i.png" alt="и">
-			<span>и</span>
-        </div>
-		<div class="image-card">
-            <img src="alphabet/10_ikratko.png" alt="й">
-			<span>и кратко</span>
-        </div>
-		<div class="image-card">
-            <img src="alphabet/11_k.png" alt="к">
-			<span>к</span>
-        </div>
-		<div class="image-card">
-            <img src="alphabet/12_l.png" alt="л">
-			<span>л</span>
-        </div>
-		<div class="image-card">
-            <img src="alphabet/13_m.png" alt="м">
-			<span>м</span>
-        </div>
-		<div class="image-card">
-            <img src="alphabet/14_n.png" alt="н">
-			<span>н</span>
-        </div>
-		<div class="image-card">
-            <img src="alphabet/15_o.png" alt="о">
-			<span>о</span>
-        </div>
-		<div class="image-card">
-            <img src="alphabet/16_p.png" alt="п">
-			<span>п</span>
-        </div>
-		<div class="image-card">
-            <img src="alphabet/17_r.png" alt="р">
-			<span>р</span>
-        </div>
-		<div class="image-card">
-            <img src="alphabet/18_s.png" alt="с">
-			<span>с</span>
-        </div>
-		<div class="image-card">
-            <img src="alphabet/19_t.png" alt="т">
-			<span>т</span>
-        </div>
-		<div class="image-card">
-            <img src="alphabet/20_u.png" alt="у">
-			<span>у</span>
-        </div>
-		<div class="image-card">
-            <img src="alphabet/21_f.png" alt="ф">
-			<span>ф</span>
-        </div>
-		<div class="image-card">
-            <img src="alphabet/22_h.png" alt="х">
-			<span>х</span>
-        </div>
-		<div class="image-card">
-            <img src="alphabet/23_c.png" alt="ц">
-			<span>ц</span>
-        </div>
-		<div class="image-card">
-            <img src="alphabet/24_ch.png" alt="ч">
-			<span>ч</span>
-        </div>
-		<div class="image-card">
-            <img src="alphabet/25_sh.png" alt="ш">
-			<span>ш</span>
-        </div>
-		<div class="image-card">
-            <img src="alphabet/26_sht.png" alt="щ">
-			<span>щ</span>
-        </div>
-		<div class="image-card">
-            <img src="alphabet/27_y.png" alt="ъ">
-			<span>ер голям</span>
-        </div>
-		<div class="image-card">
-            <img src="alphabet/28_er_malyk.png" alt="ь">
-			<span>ер малък</span>
-        </div>
-		<div class="image-card">
-            <img src="alphabet/29_iu.png" alt="ю">
-			<span>ю</span>
-        </div>
-		<div class="image-card">
-            <img src="alphabet/30_q.png" alt="я">
-			<span>я</span>
-        </div>
-    </div>
-
+    <div class="grid" id="grid"></div>
 </div>
 
-<audio id="audio"></audio>
-
 <script>
-const cards = document.querySelectorAll('.image-card');
-const audio = document.getElementById('audio');
+const letters = [
+"а","б","в","г","д","е","ж","з","и","й",
+"к","л","м","н","о","п","р","с","т","у",
+"ф","х","ц","ч","ш","щ","ъ","ь","ю","я"
+];
 
-cards.forEach(card => {
-    card.addEventListener('click', () => {
-        const text = card.querySelector('span').innerText;
+let slowMode = false;
+let selectedVoice = null;
 
-        const url =
-          "https://translate.google.com/translate_tts?ie=UTF-8&tl=bg&client=tw-ob&q=" +
-          encodeURIComponent(text);
+// Зареждане на гласовете
+function initVoices() {
+    const voices = speechSynthesis.getVoices();
 
-        audio.src = url;
-        audio.play();
+    if (!voices.length) {
+        setTimeout(initVoices, 100);
+        return;
+    }
+
+    selectedVoice =
+        voices.find(v => v.lang === "bg-BG") ||
+        voices.find(v => v.lang.startsWith("bg")) ||
+        voices[0];
+
+    console.log("Selected voice:", selectedVoice);
+}
+initVoices();
+speechSynthesis.onvoiceschanged = initVoices;
+
+// Функция за произнасяне на една буква
+function speak(text) {
+    if (!selectedVoice) initVoices();
+
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.voice = selectedVoice;
+    utterance.rate = slowMode ? 0.7 : 0.9;
+    utterance.pitch = 1;
+
+    speechSynthesis.cancel();
+    speechSynthesis.speak(utterance);
+}
+
+// Произнасяне на цялата азбука
+function speakAlphabet() {
+    speechSynthesis.cancel();
+    letters.forEach((letter, index) => {
+        const utter = new SpeechSynthesisUtterance(letter);
+        utter.voice = selectedVoice;
+        utter.rate = slowMode ? 0.7 : 0.9;
+        utter.pitch = 1;
+        setTimeout(() => speechSynthesis.speak(utter), index * 600);
     });
+}
+
+// Стоп на произнасяне
+function stopSpeaking() {
+    speechSynthesis.cancel();
+}
+
+// Превключване на детски режим
+function toggleSlowMode() {
+    slowMode = !slowMode;
+    alert(slowMode ? "Детски режим включен" : "Детски режим изключен");
+}
+
+// Превключване на тъмен режим
+function toggleDarkMode() {
+    document.body.classList.toggle("dark");
+}
+
+// Генериране на буквите
+const grid = document.getElementById("grid");
+
+letters.forEach((letter, index) => {
+    const card = document.createElement("div");
+    card.className = "image-card";
+    card.innerHTML = `
+        <img src="alphabet/${index+1}_${getFileName(letter)}.png">
+        <span>${letter}</span>
+    `;
+    card.onclick = () => speak(letter);
+    grid.appendChild(card);
 });
+
+// Карта на файловете
+function getFileName(letter) {
+    const map = {
+        "а":"a","б":"b","в":"v","г":"g","д":"d","е":"e","ж":"j","з":"z","и":"i",
+        "й":"ikratko","к":"k","л":"l","м":"m","н":"n","о":"o","п":"p","р":"r",
+        "с":"s","т":"t","у":"u","ф":"f","х":"h","ц":"c","ч":"ch","ш":"sh",
+        "щ":"sht","ъ":"y","ь":"er_malyk","ю":"iu","я":"q"
+    };
+    return map[letter];
+}
 </script>
 
 </body>
