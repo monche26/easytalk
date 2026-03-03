@@ -12,120 +12,137 @@
     font-family: "Segoe UI", Arial, sans-serif;
 }
 
-/* PAGE */
+/* BODY */
 body {
     background: var(--primary-blue);
-    min-height: 100vh;
     display: flex;
-    justify-content: center;
-    align-items: flex-start;
+    justify-content: center; /* хоризонтално центриране */
+    align-items: flex-start; /* започва отгоре */
+    min-height: 100vh;
     padding: 20px 0;
 }
 
-/* CONTAINER */
+/* CONTAINER - еднакъв за всички страници */
 .container {
     background: var(--white);
-    width: 95%;
-    max-width: 1000px;
-    padding: 28px;
+    padding: 25px;
     border-radius: 20px;
-    box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+    width: 90%;
+    max-width: 500px;
+    min-height: 500px; /* фиксирана минимална височина */
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
     text-align: center;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* съдържанието започва отгоре */
 }
 
 /* HEADINGS */
 h1, h2 {
     color: var(--primary-blue);
     margin-bottom: 12px;
-    font-size: clamp(1.5rem, 2.5vw, 2rem);
+    font-size: 2rem;
 }
 
+/* PARAGRAPHS */
 p {
     color: #333;
     margin-bottom: 20px;
-    font-size: clamp(0.9rem, 2vw, 1rem);
 }
 
-/* NAV */
+/* NAVIGATION (Начало / Картинки / Текст / Азбука / За проекта) */
 .nav {
     display: flex;
     justify-content: center;
-    gap: 14px;
+    gap: 12px;
     flex-wrap: wrap;
-    margin: 10px 0 22px 0;
+    margin-bottom: 20px;
+    min-height: 50px;
 }
 
-.btn {
+.nav .btn {
     background: var(--primary-blue);
     color: var(--white);
-    padding: 10px 22px;
+    padding: 10px 20px;
     border-radius: 30px;
     text-decoration: none;
-    font-size: clamp(0.9rem, 2vw, 1rem);
+    font-size: 1rem;
     transition: 0.2s;
+    white-space: nowrap;
 }
 
-.btn:hover {
+.nav .btn:hover {
     transform: translateY(-2px);
     box-shadow: 0 6px 14px rgba(0,0,0,0.25);
 }
 
-/* TEXTAREA */
+/* TEXTAREA (text.html) */
 textarea {
     width: 100%;
-    height: 140px;
-    border-radius: 16px;
-    border: 2px solid #dbeafe;
-    padding: 16px;
-    font-size: 1rem;
+    height: 120px;
+    padding: 14px;
+    font-size: 16px;
+    border-radius: 15px;
+    border: 2px solid #d0e6ff;
     resize: none;
-    margin-bottom: 20px;
     outline: none;
+    box-shadow: inset 0 2px 6px rgba(0,0,0,0.08);
+    background: var(--white);
+    margin-bottom: 16px;
+    transition: all 0.3s ease;
 }
 
 textarea:focus {
-    border-color: #4facfe;
+    border-color: #7eaaf2;
+    box-shadow: 0 0 0 3px rgba(126,170,242,0.3);
 }
 
-/* BUTTON */
+/* BUTTONS (text.html и grid) */
 button {
     width: 100%;
     background: var(--primary-blue);
     color: var(--white);
-    padding: 14px;
+    font-size: 16px;
+    padding: 12px;
     border-radius: 30px;
     border: none;
-    font-size: 1.1rem;
     cursor: pointer;
-    transition: 0.2s;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    margin-bottom: 20px;
 }
 
 button:hover {
-    transform: scale(1.03);
-    box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
 }
 
-/* GRID */
+button:active {
+    transform: scale(0.97);
+}
+
+/* GRID (Азбука / Картинки) */
 .grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-    justify-items: center;
+    grid-template-columns: repeat(auto-fill, 160px);
+    justify-content: center;
     gap: 16px;
 }
 
 .image-card {
-    width: 100%;
-    max-width: 160px;
-    height: auto;
+    width: 160px;
+    height: 180px;
     background: #f7fbff;
     border-radius: 18px;
-    padding: 16px;
+    padding: 18px;
     box-shadow: 0 6px 14px rgba(0,0,0,0.15);
     cursor: pointer;
     transition: 0.2s;
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
 }
 
 .image-card:hover {
@@ -138,65 +155,63 @@ button:hover {
 }
 
 .image-card img {
-    width: 60%;
-    height: auto;
+    width: 80px;
+    height: 80px;
     object-fit: contain;
 }
 
 .image-card span {
-    margin-top: 8px;
-    font-size: clamp(14px, 2vw, 22px);
+    margin-top: 10px;
+    font-size: 22px;
     font-weight: 600;
     color: var(--primary-blue);
     text-align: center;
 }
 
-/* RESPONSIVE */
-@media (max-width: 768px) {
-    .container {
-        padding: 20px;
-    }
-
-    .grid {
-        gap: 12px;
-    }
-
-    .btn, button {
-        font-size: 1rem;
-    }
-}
-
+/* MOBILE */
 @media (max-width: 480px) {
+    .container {
+        width: 95%;
+        padding: 16px;
+        min-height: 450px; /* малко по-малка височина на телефон */
+    }
+
     h1, h2 {
-        font-size: 1.4rem;
-    }
-
-    .btn, button {
-        width: 100%;
-        font-size: 0.95rem;
-        padding: 12px;
-    }
-
-    .grid {
-        grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
-        gap: 10px;
-    }
-
-    .image-card {
-        max-width: 120px;
-        padding: 12px;
-    }
-
-    .image-card img {
-        width: 50%;
-    }
-
-    .image-card span {
-        font-size: 14px;
+        font-size: 1.5rem;
     }
 
     textarea {
         height: 100px;
-        font-size: 0.95rem;
+        font-size: 14px;
+    }
+
+    button {
+        font-size: 14px;
+        padding: 10px;
+    }
+
+    .nav .btn {
+        font-size: 13px;
+        padding: 6px 12px;
+    }
+
+    .grid {
+        grid-template-columns: repeat(auto-fill, 120px);
+        gap: 12px;
+    }
+
+    .image-card {
+        width: 120px;
+        height: 150px;
+        padding: 14px;
+    }
+
+    .image-card img {
+        width: 60px;
+        height: 60px;
+    }
+
+    .image-card span {
+        font-size: 16px;
     }
 }
