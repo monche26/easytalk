@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+    <meta charset="UTF-8">
+    <title>StreetIQ - Интелигентни на пътя</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: "Comic Sans MS", "Segoe UI", Arial, sans-serif;
+            background: linear-gradient(to bottom, #e0f7fa, #ffffff);
+        }
+
+        header {
+            background: linear-gradient(135deg, #4caf50, #81c784);
+            color: white;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+
+        header h1 {
+            font-size: 36px;
+            margin: 0;
+        }
+
+        nav {
+            background-color: #ffffff;
+            padding: 15px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        nav a {
+            background: #4caf50;
+            color: white;
+            text-decoration: none;
+            padding: 12px 20px;
+            margin: 5px;
+            border-radius: 20px;
+            font-size: 16px;
+            display: inline-block;
+            transition: 0.3s;
+        }
+
+        nav a:hover {
+            background: #388e3c;
+            transform: scale(1.1);
+        }
+
+        main {
+            max-width: 900px;
+            margin: 30px auto;
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 18px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        main h2 {
+            color: #4caf50;
+        }
+
+        main p {
+            font-size: 17px;
+            line-height: 1.6;
+            color: #333;
+		}
+
+        main img {
+            width: 100%;
+            border-radius: 15px;
+            margin: 15px 0;
+        }
+
+       footer {
+            background-color: #388e3c;
+            color: white;
+            text-align: center;
+            padding: 15px;
+            margin-top: 40px;
+        }
+	.site-header {
+		display: grid;
+		grid-template-columns: auto 1fr auto;
+		align-items: center;
+		padding: 15px 20px;
+		background: linear-gradient(135deg, #4caf50, #81c784);
+		color: white;	
+		}
+
+	.header-left,
+	.header-right {
+    width: 60px; /* балансира центъра */
+	}
+
+	.logo {
+    width: 45px;
+    height: auto;
+	}
+
+	.header-center h1 {
+    margin: 0;
+    text-align: center;
+    font-size: 28px;
+	}
+ /* АУДИО ПЛЕЙЪР */
+        .audio-player {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .controls button {
+            background: #4caf50;
+            color: white;
+            border: none;
+            padding: 10px 18px;
+            margin: 5px;
+            border-radius: 20px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: 0.3s;
+            font-family: inherit;
+        }
+
+        .controls button:hover {
+            background: #388e3c;
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body>
+
+<header class="site-header">
+    <div class="header-left">
+        <img src="pics/logo.png" alt="StreetIQ Лого" class="logo">
+    </div>
+
+    <div class="header-center">
+        <h1>StreetIQ - Интелигентни на пътя</h1>
+    </div>
+
+    <div class="header-right"></div>
+</header>
+
+<nav>
+    <a href="index.html">Начало</a>
+    <a href="rules.html">Правила</a>
+    <a href="examples.html">Примери</a>
+    <a href="stories.html">Истории</a>
+    <a href="learned.html">Какво научих</a>
+    <a href="about.html">За мен</a>
+</nav>
+
+<main>
+  <!-- АУДИО ПЛЕЙЪР -->
+    <div class="audio-player">
+        <audio id="myAudio">
+            <source src="audio/examples.wav" type="audio/mpeg">
+        </audio>
+
+        <div class="controls">
+            <button onclick="playAudio()">▶ Пусни</button>
+            <button onclick="pauseAudio()">⏸ Пауза</button>
+            <button onclick="stopAudio()">⏹ Спри</button>
+        </div>
+    </div>
+      <!-- Първа секция: МВР -->
+    <h2>Интерактивна карта с информация за пътнотранспортни произшествия</h2>
+    <div style="display:flex; align-items:flex-start; gap:20px; margin-bottom:20px;">
+        <div style="flex:1;">
+            <a href="https://www.mvr.bg/map/apps/dashboards/0b7065b1f1d34d7d8ad530c51434a9f0" target="_blank">
+                <img src="pics/mvr.png" alt="Сайт МВР" style="width:100%; border-radius:10px;">
+            </a>
+            <p>Чрез хипервръзката може да разгледате карта с ПТП от сайта на МВР</p>
+            <a href="https://www.mvr.bg/map/apps/dashboards/0b7065b1f1d34d7d8ad530c51434a9f0" target="_blank">
+                <h3>Разгледайте картата</h3>
+            </a>
+        </div>
+        <div style="flex:1;">
+            <p>
+                Пътно-транспортните произшествия (ПТП) са сериозен проблем в България. 
+                Ако станете свидетел на ПТП, е важно незабавно да се обадите на 112, 
+                за да сигнализирате за инцидента и да потърсите помощ. 
+                Най-често виновниците за ПТП са шофьори, които превишават скоростта, 
+                затова спазването на правилата за движение е жизненоважно. 
+                За безопасността на пешеходците е важно да пресичат само на 
+                пешеходни пътеки и да гледат наляво и надясно, а велосипедистите 
+                трябва да носят каски и да спазват правилата за движение. 
+                В случай на инцидент, винаги използвайте номера за спешни случаи 112.
+            </p>
+        </div>
+    </div>
+
+    <!-- Втора секция: Черна писта -->
+    <h2>Проектът "Черна писта" на Мартин Атанасов</h2>
+    <div style="display:flex; align-items:flex-start; gap:20px; margin-bottom:20px;">
+        <div style="flex:1;">
+            <a href="https://chernapista.com/map" target="_blank">
+                <img src="pics/pista.png" alt="Черна писта" style="width:100%; border-radius:10px;">
+            </a>
+            <p>Чрез хипервръзката може да разгледате карта с ПТП, създадена от 18-годишния Мартин Атанасов</p>
+            <a href="https://chernapista.com/map" target="_blank">
+                <h3>Разгледайте картата</h3>
+            </a>
+        </div>
+        <div style="flex:1;">
+            <p>
+                Проектът „Черна писта“ е интерактивна карта, създадена от Мартин Атанасов, 
+                която показва всички пътно‑транспортни произшествия в България и опасните участъци по пътищата. 
+                Картата обединява над 177 000 инцидента от периода 2021–2025 г., 
+                за да информира гражданите за честотата и местата на ПТП. 
+                Идеята за проекта идва след трагичен случай и цели да привлече 
+                внимание към безопасността по пътищата. 
+                „Черна писта“ предизвика голям обществен интерес и бе отличена 
+                с награди за принос към информираността и пътната безопасност. 
+                Въпреки опити за кибератаки, сайтът продължава да служи като важен инструмент за информация и превенция.
+            </p>
+        </div>
+    </div>
+
+    <!-- Трета секция: Видео уроци -->
+    <h2>Безплатни видеоуроци за безопасност на движението по пътищата</h2>
+    <div style="display:flex; align-items:flex-start; gap:20px; margin-bottom:20px;">
+        <div style="flex:1;">
+            <a href="https://www.sars.gov.bg/deinost-na-dabpd/interaktivni-uroci/" target="_blank">
+                <img src="pics/video.png" alt="Видео" style="width:100%; border-radius:10px;">
+            </a>
+            <p>Чрез хипервръзката може да достигнете до видео уроците</p>
+            <a href="https://www.sars.gov.bg/deinost-na-dabpd/interaktivni-uroci/" target="_blank">
+                <h3>Разгледайте видеата</h3>
+            </a>
+        </div>
+        <div style="flex:1;">
+            <p>
+               Видео уроците по безопасност на движението са създадени специално за ученици и 
+               обясняват важни правила по забавен и достъпен начин. 
+               Те включват теми като безопасно пресичане, правилна употреба 
+               на коланите и използване на предпазни средства при колоездене. 
+               Чрез анимации и реални примери децата могат да видят какво е безопасно 
+               и какво е опасно на пътя. Уроците подпомагат както преподавателите, 
+               така и родителите да обяснят правилата по интересен начин. 
+               Тези видеа повишават информираността и стимулират отговорно поведение на децата при движение по пътищата.
+            </p>
+        </div>
+    </div>
+</main>
+
+<footer>
+<marquee direction="left" scrollamount="5">
+  © 2025 StreetIQ - Интелигентни на пътя, Никол Маринова
+</marquee>
+</footer>
+<script>
+    const audio = document.getElementById("myAudio");
+
+    function playAudio() {
+        audio.play();
+    }
+
+    function pauseAudio() {
+        audio.pause();
+    }
+
+    function stopAudio() {
+        audio.pause();
+        audio.currentTime = 0;
+    }
+</script>
+
+</body>
+</html>

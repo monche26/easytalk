@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Тест по БДП</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: #333; max-width: 900px; margin: 0 auto; padding: 20px; background-color: #f4f7f9; }
+        .question-card { background: white; border-radius: 12px; padding: 25px; margin-bottom: 30px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); border-top: 5px solid #1a73e8; }
+        h1 { text-align: center; color: #2c3e50; text-transform: uppercase; margin-bottom: 5px; }
+        .subtitle { text-align: center; color: #7f8c8d; margin-bottom: 30px; font-weight: bold; }
+        .score-box { position: fixed; top: 20px; right: 20px; z-index: 1000; background: #1a73e8; color: white; padding: 15px 25px; border-radius: 50px; font-size: 20px; font-weight: bold; display: none; box-shadow: 0 4px 10px rgba(0,0,0,0.3); }
+        img { width: 100%; border-radius: 8px; margin-bottom: 20px; border: 1px solid #ddd; display: block; }
+        .options { list-style: none; padding: 0; }
+        .options li { background: #fff; margin-bottom: 12px; padding: 15px; border-radius: 8px; cursor: pointer; border: 2px solid #e0e0e0; display: flex; align-items: center; transition: 0.2s; }
+        .options li:hover { border-color: #3498db; background-color: #f0f7ff; }
+        .options li.selected { border-color: #1a73e8; background-color: #e8f0fe; }
+        .options li input { margin-right: 15px; transform: scale(1.3); pointer-events: none; }
+        .correct { background-color: #d4edda !important; border-color: #28a745 !important; color: #155724; font-weight: bold; }
+        .wrong { background-color: #f8d7da !important; border-color: #dc3545 !important; color: #721c24; }
+        .btn-container { text-align: center; margin: 50px 0; }
+        #check-btn { background: #2c3e50; color: white; border: none; padding: 20px 60px; font-size: 22px; border-radius: 10px; cursor: pointer; font-weight: bold; }
+        #check-btn:hover { background: #1a73e8; }
+    </style>
+</head>
+<body>
+
+    <h1>Тест по БДП</h1>
+    <p class="subtitle"> 20 ситуации проверка на вашата интелигентност на пътя</p>
+    
+    <div id="score-summary" class="score-box"></div>
+
+    <form id="quiz-form">
+
+        <div class="question-card" data-correct="1">
+            <img src="1.jpg" alt="Ситуация 1">
+            <h3>1. Какво е предназначението на червената хоризонтална маркировка върху платното?</h3>
+            <ul class="options">
+                <li onclick="sel(this)"><input type="radio" name="q1"> А) Обозначава зона, забранена за престой и паркиране.</li>
+                <li onclick="sel(this)"><input type="radio" name="q1"> Б) Помага на шофьорите да забележат зоната за пресичане от много по-далечно разстояние.</li>
+                <li onclick="sel(this)"><input type="radio" name="q1"> В) Обозначава специална лента за принудително спиране.</li>
+            </ul>
+        </div>
+
+        <div class="question-card" data-correct="0">
+            <img src="2.jpg" alt="Ситуация 2">
+            <h3>2. Разрешено ли е навлизането в насрещното платно при наличие на двойна непрекъсната линия?</h3>
+            <ul class="options">
+                <li onclick="sel(this)"><input type="radio" name="q2"> А) Не, пресичането ѝ от пътни превозни средства е абсолютно забранено.</li>
+                <li onclick="sel(this)"><input type="radio" name="q2"> Б) Да, само за заобикаляне на спряло или повредено превозно средство.</li>
+                <li onclick="sel(this)"><input type="radio" name="q2"> В) Да, за извършване на маневра "обратен завой".</li>
+            </ul>
+        </div>
+
+        <div class="question-card" data-correct="1">
+            <img src="3.jpg" alt="Ситуация 3">
+            <h3>3. Каква дистанция трябва да поддържате при спиране в колона на светофар?</h3>
+            <ul class="options">
+                <li onclick="sel(this)"><input type="radio" name="q3"> А) Минимална, за да се осигури пропускателна способност на кръстовището.</li>
+                <li onclick="sel(this)"><input type="radio" name="q3"> Б) Безопасна дистанция, позволяваща маневриране при необходимост.</li>
+                <li onclick="sel(this)"><input type="radio" name="q3"> В) Поне една дължина на автомобила спрямо предното превозно средство.</li>
+            </ul>
+        </div>
+
+        <div class="question-card" data-correct="2">
+            <img src="4.jpg" alt="Ситуация 4">
+            <h3>4. Имате ли право като пешеходец да пресичате платното между спрели в колона автомобили?</h3>
+            <ul class="options">
+                <li onclick="sel(this)"><input type="radio" name="q4"> А) Да, тъй като превозните средства са в покой.</li>
+                <li onclick="sel(this)"><input type="radio" name="q4"> Б) Да, ако се движите с повишено внимание.</li>
+                <li onclick="sel(this)"><input type="radio" name="q4"> В) Не, поради риск от внезапно потегляне или ограничена видимост за други участници.</li>
+            </ul>
+        </div>
+
+        <div class="question-card" data-correct="1">
+            <img src="5.jpg" alt="Ситуация 5">
+            <h3>5. Светофарът работи в нормален режим. Трябва ли да се съобразявате със знака за предимство?</h3>
+            <ul class="options">
+                <li onclick="sel(this)"><input type="radio" name="q5"> А) Да, пътните знаци са с по-висок приоритет.</li>
+                <li onclick="sel(this)"><input type="radio" name="q5"> Б) Не, работещият светофар отменя знаците за предимство.</li>
+                <li onclick="sel(this)"><input type="radio" name="q5"> В) Да, само ако завивате наляво.</li>
+            </ul>
+        </div>
+
+        <div class="question-card" data-correct="0">
+            <img src="6.jpg" alt="Ситуация 6">
+            <h3>6. Може ли пешеходец, движещ се в посока от белия към сивия автомобил, да пресече в настоящия момент?</h3>
+            <ul class="options">
+                <li onclick="sel(this)"><input type="radio" name="q6"> А) Не. Светофарът не позволява.</li>
+                <li onclick="sel(this)"><input type="radio" name="q6"> Б) Да. След като преминат и другите автомобили.</li>
+                <li onclick="sel(this)"><input type="radio" name="q6"> В) Да. Автомобилите са минали и е безопасно.</li>
+            </ul>
+        </div>
+
+        <div class="question-card" data-correct="2">
+            <img src="16.jpg" alt="Ситуация 7">
+            <h3>7. Кои участници в движението имат право да преминат през пътното платно в тази ситуация?</h3>
+            <ul class="options">
+                <li onclick="sel(this)"><input type="radio" name="q7"> А) Автомобилите.</li>
+                <li onclick="sel(this)"><input type="radio" name="q7"> Б) И пешеходците, и автомобилите.</li>
+                <li onclick="sel(this)"><input type="radio" name="q7"> В) Пешеходците.</li>
+            </ul>
+        </div>
+
+        <div class="question-card" data-correct="1">
+            <img src="8.jpg" alt="Ситуация 8">
+            <h3>8. Може ли сивият автомобил да извърши маневра завой надясно?</h3>
+            <ul class="options">
+                <li onclick="sel(this)"><input type="radio" name="q8"> А) Да, ако подаде ляв мигач.</li>
+                <li onclick="sel(this)"><input type="radio" name="q8"> Б) Не. Движи се в неподходяща лента и това е изход от бензиностанцията.</li>
+                <li onclick="sel(this)"><input type="radio" name="q8"> В) Да, ако спре и пропусне пешеходеца.</li>
+            </ul>
+        </div>
+
+        <div class="question-card" data-correct="0">
+            <img src="9.jpg" alt="Ситуация 9">
+            <h3>9. Пътен знак "В26" ограничава скоростта до 30 км/ч. Докъде е валидна забраната?</h3>
+            <ul class="options">
+                <li onclick="sel(this)"><input type="radio" name="q9"> А) До следващото кръстовище или знак, който я отменя.</li>
+                <li onclick="sel(this)"><input type="radio" name="q9"> Б) До 100 м после знака.</li>
+                <li onclick="sel(this)"><input type="radio" name="q9"> В) Докато водачът прецени, че е безопасно.</li>
+            </ul>
+        </div>
+
+        <div class="question-card" data-correct="1">
+            <img src="10.jpg" alt="Ситуация 10">
+            <h3>10. Колчетата, разделящи лентите за движение в двете посоки:</h3>
+            <ul class="options">
+                <li onclick="sel(this)"><input type="radio" name="q10"> А) Служат за декорация на пътното платно.</li>
+                <li onclick="sel(this)"><input type="radio" name="q10"> Б) Се поставят с цел забрана на пресичането на разделителната зона.</li>
+                <li onclick="sel(this)"><input type="radio" name="q10"> В) Обозначават зона за паркиране върху пътното платно.</li>
+            </ul>
+        </div>
+
+        <div class="question-card" data-correct="1">
+            <img src="15.jpg" alt="Ситуация 11">
+            <h3>11. Предупредителният знак "Деца" задължава водача да:</h3>
+            <ul class="options">
+                <li onclick="sel(this)"><input type="radio" name="q11"> А) Спре незабавно.</li>
+                <li onclick="sel(this)"><input type="radio" name="q11"> Б) Бъде в готовност да спре при внезапна поява на деца на платното.</li>
+                <li onclick="sel(this)"><input type="radio" name="q11"> В) Увеличи скоростта, за да премине по-бързо.</li>
+            </ul>
+        </div>
+
+        <div class="question-card" data-correct="1">
+            <img src="17.jpg" alt="Ситуация 12">
+            <h3>12. Какъв тип е велосипедната алея, отделена от пътното платно?</h3>
+            <ul class="options">
+                <li onclick="sel(this)"><input type="radio" name="q12"> А) Еднопосочна в посока на движението.</li>
+                <li onclick="sel(this)"><input type="radio" name="q12"> Б) Двупосочна, разделена с надлъжна жълта линия.</li>
+                <li onclick="sel(this)"><input type="radio" name="q12"> В) Зона само за пешеходци.</li>
+            </ul>
+        </div>
+
+        <div class="question-card" data-correct="2">
+            <img src="18.jpg" alt="Ситуация 13">
+            <h3>13. За кого е предназначена релефната (тактилна) маркировка на тротоара?</h3>
+            <ul class="options">
+                <li onclick="sel(this)"><input type="radio" name="q13"> А) За подпомагане сцеплението на гумите на МПС.</li>
+                <li onclick="sel(this)"><input type="radio" name="q13"> Б) За декорация на градската среда.</li>
+                <li onclick="sel(this)"><input type="radio" name="q13"> В) За ориентация и предупреждение на лица с увредено зрение.</li>
+            </ul>
+        </div>
+
+        <div class="question-card" data-correct="1">
+            <img src="20.jpg" alt="Ситуация 14">
+            <h3>14. Пътният знак на острова позволява заобикаляне на препятствието:</h3>
+            <ul class="options">
+                <li onclick="sel(this)"><input type="radio" name="q14"> А) Единствено от дясната му страна.</li>
+                <li onclick="sel(this)"><input type="radio" name="q14"> Б) Както от лявата, така и от дясната му страна.</li>
+                <li onclick="sel(this)"><input type="radio" name="q14"> В) Само след спиране и проверка.</li>
+            </ul>
+        </div>
+
+        <div class="question-card" data-correct="2">
+            <img src="21.jpg" alt="Ситуация 15">
+            <h3>15. При наближаване на пешеходна пътека тип "Зебра", водачът трябва:</h3>
+            <ul class="options">
+                <li onclick="sel(this)"><input type="radio" name="q15"> А) Да премине с непроменена скорост, ако няма пешеходци.</li>
+                <li onclick="sel(this)"><input type="radio" name="q15"> Б) Да спре задължително, независимо дали има пешеходци.</li>
+                <li onclick="sel(this)"><input type="radio" name="q15"> В) Да намали скоростта и да бъде в готовност да пропусне пешеходците.</li>
+            </ul>
+        </div>
+
+        <div class="question-card" data-correct="1">
+            <img src="22.jpg" alt="Ситуация 16">
+            <h3>16. Къде трябва да спре водачът при червен сигнал на светофара?</h3>
+            <ul class="options">
+                <li onclick="sel(this)"><input type="radio" name="q16"> А) Директно върху пешеходната пътека.</li>
+                <li onclick="sel(this)"><input type="radio" name="q16"> Б) Преди стоп-линията или преди пешеходната пътека.</li>
+                <li onclick="sel(this)"><input type="radio" name="q16"> В) Където прецени, стига да не блокира напречното движение.</li>
+            </ul>
+        </div>
+
+        <div class="question-card" data-correct="2">
+            <img src="1.jpg" alt="Ситуация 17">
+            <h3>17. Ако пешеходец се опита да пресече в настоящия момент:</h3>
+            <ul class="options">
+                <li onclick="sel(this)"><input type="radio" name="q17"> А) Няма да наруши правилата за движение.</li>
+                <li onclick="sel(this)"><input type="radio" name="q17"> Б) Водачът на автомобила трябва да премине с по-висока скорост.</li>
+                <li onclick="sel(this)"><input type="radio" name="q17"> В) Водачът на автомобила е с предимство.</li>
+            </ul>
+        </div>
+
+        <div class="question-card" data-correct="0">
+            <img src="9.jpg" alt="Ситуация 18">
+            <h3>18. Какво означава червено-бялата маркировка на бордюра?</h3>
+            <ul class="options">
+                <li onclick="sel(this)"><input type="radio" name="q18"> А) Опасно място и забрана за престой и паркиране.</li>
+                <li onclick="sel(this)"><input type="radio" name="q18"> Б) Място за краткотраен престой до 3 минути.</li>
+                <li onclick="sel(this)"><input type="radio" name="q18"> В) Начало на синя зона за паркиране.</li>
+            </ul>
+        </div>
+
+        <div class="question-card" data-correct="0">
+            <img src="18.jpg" alt="Ситуация 19">
+            <h3>19. Какво трябва да направи пешеходецът съгласно надписа "ПОГЛЕДНИ" на асфалта?</h3>
+            <ul class="options">
+                <li onclick="sel(this)"><input type="radio" name="q19"> А) Да се огледа активно наляво и надясно преди пресичане.</li>
+                <li onclick="sel(this)"><input type="radio" name="q19"> Б) Да спре и да изчака автомобилите да спрат напълно.</li>
+                <li onclick="sel(this)"><input type="radio" name="q19"> В) Да гледа в земята, докато пресича.</li>
+            </ul>
+        </div>
+
+        <div class="question-card" data-correct="1">
+            <img src="20.jpg" alt="Ситуация 20">
+            <h3>20. Предпазната ограда (парапет) на тротоара или острова има за цел:</h3>
+            <ul class="options">
+                <li onclick="sel(this)"><input type="radio" name="q20"> А) Да служи за опора на чакащите пешеходци.</li>
+                <li onclick="sel(this)"><input type="radio" name="q20"> Б) Да не позволява пресичане на платното на нерегламентирани места.</li>
+                <li onclick="sel(this)"><input type="radio" name="q20"> В) Да предпазва автомобилите от удар в пешеходците.</li>
+            </ul>
+        </div>
+
+        <div class="btn-container">
+            <button type="button" id="check-btn" onclick="processResults()">ПРОВЕРИ РЕЗУЛТАТИТЕ</button>
+        </div>
+    </form>
+
+    <script>
+        function sel(li) {
+            let items = li.parentElement.querySelectorAll('li');
+            items.forEach(i => {
+                i.classList.remove('selected');
+                i.querySelector('input').checked = false;
+            });
+            li.classList.add('selected');
+            li.querySelector('input').checked = true;
+        }
+
+        function processResults() {
+            let cards = document.querySelectorAll('.question-card');
+            let score = 0;
+
+            cards.forEach(card => {
+                let correctIdx = parseInt(card.getAttribute('data-correct'));
+                let options = card.querySelectorAll('li');
+                let selected = card.querySelector('li.selected');
+
+                options[correctIdx].classList.add('correct');
+
+                if (selected) {
+                    let optionsArr = Array.from(options);
+                    let selectedIdx = optionsArr.indexOf(selected);
+                    if (selectedIdx === correctIdx) {
+                        score++;
+                    } else {
+                        selected.classList.add('wrong');
+                    }
+                }
+            });
+
+            let summary = document.getElementById('score-summary');
+            summary.style.display = 'block';
+            summary.innerHTML = `Резултат: ${score} / 20`;
+            
+            if (score >= 18) summary.style.background = "#28a745";
+            else if (score >= 15) summary.style.background = "#ffc107";
+            else summary.style.background = "#dc3545";
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>
